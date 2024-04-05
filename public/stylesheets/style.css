@@ -16,3 +16,16 @@ h1 {
   padding: 0;
   list-style: none;
 }
+
+
+.form-group{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-control{
+  width: 50%;
+}
