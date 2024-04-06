@@ -1,0 +1,39 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{genre.name}
+
+  if  genre_books.length > 0
+    p #[strong Delete the following instances before attempting to delete this book.]
+    div(style='margin-left:20px;margin-top:20px')
+      h4 Books
+
+      each val in genre_books
+        hr
+        p #[strong Title: ]
+        a(href=val.url) #{val.title}
+        p #[strong Summary:] #{val.summary}
+        p #[strong ISBN:] #{val.isbn}
+        p #[strong Author:]
+        a(href=val.author.url) #{val.author.name}
+        p #[strong Genre: ]
+        if val.genre.length == 1
+          a(href=val.genre[0].url) #{val.genre[0].name}
+        else
+            each genre in val.genre
+                a(href=genre.url) #{genre.name},
+
+        p #[strong Id: ]
+        a(href=val.url) #{val._id}
+      else
+        p There are no books in this genre.
+      hr
+
+  else
+    p #[strong Are you sure you want to delete this genre?]
+    form(method='POST')
+      div.form-group
+        input#genreid.form-control(type='hidden', name='genreid', value=genre._id )
+
+      button.btn.btn-primary(type='submit') Delete
